@@ -11,4 +11,11 @@ application.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 application.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:root@localhost:8000/library"
 db.init_app(application)
 
+
+@application.route("/", methods=["get", "post"])
+def index():
+    return render_template("index.html",
+                           headline="library - infi_project_22")
+
+
 application.run()
