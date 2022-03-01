@@ -1,16 +1,14 @@
-# This is a sample Python script.
+from flask import Flask, redirect, request, flash
+from flask.templating import render_template
+from flask_sqlalchemy import SQLAlchemy
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+db = SQLAlchemy()
 
+application = Flask(__name__)
+application.secret_key = "VerySecretSecretKey"
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+application.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+application.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:root@localhost:8000/library"
+db.init_app(application)
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+application.run()

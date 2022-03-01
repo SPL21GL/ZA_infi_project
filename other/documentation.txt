@@ -1,0 +1,14 @@
+- using MySQL Workbench 8.0 to create database with create.sql
+
+- install required modules:
+    pip install -r ./other/requirements
+
+- creating models.py with following command:
+    python -m sqlacodegen.main --flask --outfile models.py mysql://root:root@localhost:8000/library
+
+
+
+- optional Errors:
+
+[WinError 10013]:
+    kill other mysql database processes
