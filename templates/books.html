@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<style>
+.table{
+    margin-top: 15px;
+    margin-left:5%;
+    max-width: 90%;
+    }
+.button-edit_mode{
+    margin-top: 65px;
+    margin-left:5%;
+
+}
+</style>
+
+
+<form class="button-edit_mode d-flex" action="{{ url_for('edit_mode') }}">
+            <button type="button" class="btn btn-outline-primary btn-sm">Bearbeiten aktivieren</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td scope="col">Buch-ID</td>
+            <td scope="col">Titel</td>
+            <td scope="col">Kategorie</td>
+            <td scope="col">Veröffentlichungsdatum</td>
+            <td scope="col">Autoren-ID</td>
+        </tr>
+    </thead>
+    <tbody>
+        {%for item in items:%}
+            <tr>
+                <td scope="row">{{item.bookID}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.releaseDate}}</td>
+                <td>{{item.authorID}}</td>
+            </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+
+{%endblock%}
