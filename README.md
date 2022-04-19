@@ -1,3 +1,6 @@
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d7bf2cc358144938b24e2ebca48f853f)](https://app.codacy.com/gh/SPL21GL/ZA_infi_project?utm_source=github.com&utm_medium=referral&utm_content=SPL21GL/ZA_infi_project&utm_campaign=Badge_Grade_Settings)
+
 Quellen:
 
 Bookshelf-Logo-Navbar-left:
