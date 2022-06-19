@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<form method="post">
+    {{form.csrf_token}}
+
+    <!-- {{ form.errors }} -->
+
+    <div class="mb-3">
+        <label for="email" class="form-label">email</label>
+        {{form.author_email(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="address" class="form-label">address</label>
+        {{form.author_address(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="birthday" class="form-label">birthday</label>
+        {{form.author_birthday(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="mobileNumber" class="form-label">mobileNumber</label>
+        {{form.author_mobile_number(class_="form-control")}}
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock%}

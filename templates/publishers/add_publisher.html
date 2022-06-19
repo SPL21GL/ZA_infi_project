@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<form method="post">
+    {{form.csrf_token}}
+
+    <!-- {{ form.errors }} -->
+
+    <div class="mb-3">
+        <label for="name" class="form-label">name</label>
+        {{form.publisher_name(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="address" class="form-label">address</label>
+        {{form.publisher_address(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="amountOfBooks" class="form-label">amountOfBooks</label>
+        {{form.publisher_amount_of_books(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="founderDate" class="form-label">founderDate</label>
+        {{form.publisher_founder_date(class_="form-control")}}
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock%}

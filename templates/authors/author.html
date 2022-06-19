@@ -1,0 +1,72 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<a href="/authors/add_author"
+   class="btn btn-outline-primary btn-sm">
+    add data
+</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">email</th>
+        <th scope="col">address</th>
+        <th scope="col">birthday</th>
+        <th scope="col">mobileNumber</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for author in authors.items %}
+    <tr>
+        <td>{{author.email}}</td>
+        <td>{{author.address}}</td>
+        <td>{{author.birthday}}</td>
+        <td>{{author.mobileNumber}}</td>
+        <td>
+            <a class="btn btn-success" href="/authors/edit_author?authorID={{author.authorID}}">✏️</a>
+            <form action="/authors/delete_author" method="post" style="display: inline;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="authorID" id="authorID" value="{{author.authorID}}">
+                <button class="btn btn-danger" onclick="delete_author(this); return false;">🗑️</button>
+
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<div id="data-navigation">
+    <a href="{{ url_for('authors_blueprint.authors', page=1) }}"
+       class="btn btn-outline-primary btn-sm
+           {% if authors.page == 1 %}disabled{% endif %}">
+        &laquo;&laquo;
+    </a>
+    <a href="{{ url_for('authors_blueprint.authors', page=authors.prev_num) }}"
+       class="btn btn-outline-primary btn-sm
+           {% if authors.page == 1 %}disabled{% endif %}">
+        &laquo;
+    </a>
+    <a class="btn btn-primary btn-sm">
+        {{ authors.page }}
+    </a>
+
+    <a href="{{ url_for('authors_blueprint.authors', page=authors.next_num) }}"
+       class="btn btn-outline-primary btn-sm
+           {% if authors.page == authors.pages or authors.pages == 0 %}disabled{% endif %}">
+        &raquo;
+    </a>
+    <a href="{{ url_for('authors_blueprint.authors', page=authors.pages) }}"
+       class="btn btn-outline-primary btn-sm
+           {% if authors.page == authors.pages or authors.pages == 0%}disabled{% endif %}">
+        &raquo;&raquo;
+    </a>
+</div>
+
+
+
+{%endblock%}

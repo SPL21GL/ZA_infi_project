@@ -1,0 +1,72 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<a href="/books/add_book"
+   class="btn btn-outline-primary btn-sm">
+    add data
+</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">title</th>
+        <th scope="col">category</th>
+        <th scope="col">releaseDate</th>
+        <th scope="col">authorID</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for book in books.items %}
+    <tr>
+        <td>{{book.title}}</td>
+        <td>{{book.category}}</td>
+        <td>{{book.releaseDate}}</td>
+        <td>{{book.authorID}}</td>
+        <td>
+            <a class="btn btn-success" href="/books/edit_book?bookID={{book.bookID}}">✏️</a>
+            <form action="/books/delete_book" method="post" style="display: inline;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="bookID" id="bookID" value="{{book.bookID}}">
+                <button class="btn btn-danger" onclick="delete_book(this); return false;">🗑️</button>
+
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<div id="data-navigation">
+    <a href="{{ url_for('books_blueprint.books', page=1) }}"
+       class="btn btn-outline-primary btn-sm
+           {% if books.page == 1 %}disabled{% endif %}">
+        &laquo;&laquo;
+    </a>
+    <a href="{{ url_for('books_blueprint.books', page=books.prev_num) }}"
+       class="btn btn-outline-primary btn-sm
+           {% if books.page == 1 %}disabled{% endif %}">
+        &laquo;
+    </a>
+    <a class="btn btn-primary btn-sm">
+        {{ books.page }}
+    </a>
+
+    <a href="{{ url_for('books_blueprint.books', page=books.next_num) }}"
+       class="btn btn-outline-primary btn-sm
+           {% if books.page == books.pages or books.pages == 0 %}disabled{% endif %}">
+        &raquo;
+    </a>
+    <a href="{{ url_for('books_blueprint.books', page=books.pages) }}"
+       class="btn btn-outline-primary btn-sm
+           {% if books.page == books.pages or books.pages == 0%}disabled{% endif %}">
+        &raquo;&raquo;
+    </a>
+</div>
+
+
+
+{%endblock%}

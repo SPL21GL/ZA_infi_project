@@ -12,6 +12,9 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
         body {
+
+            margin: 12px;
+            margin-top: 80px;
             max-height:100%;
             overflow-y: hidden;
             }
@@ -37,20 +40,12 @@
                 Daten
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="{{url_for('load_authorgroups')}}">👥 Autorengruppe</a></li>
+                  <li><a class="dropdown-item" href="/publishers">🗞️ Verläge</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{{url_for('load_authors')}}">👤 Autoren</a></li>
+                  <li><a class="dropdown-item" href="/authors">👤 Autoren</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{{url_for('load_books')}}">📖 Bücher</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{{url_for('load_publishers')}}">🗞️ Verläge</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{{url_for('load_versions')}}">✨ Versionen</a></li>
+                  <li><a class="dropdown-item" href="/books">📖 Bücher</a></li>
               </ul>
-            </li>
-             <li class="nav-item">
-              <a class="nav-link active" href="/contact">Kontakt</a>
-            </li>
           </ul>
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

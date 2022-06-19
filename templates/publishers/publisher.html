@@ -1,0 +1,73 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+
+<a href="/publishers/add_publisher"
+   class="btn btn-outline-primary btn-sm">
+    add data
+</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">name</th>
+        <th scope="col">address</th>
+        <th scope="col">amountOfBooks</th>
+        <th scope="col">founderDate</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for publisher in publishers.items %}
+    <tr>
+        <td>{{publisher.name}}</td>
+        <td>{{publisher.address}}</td>
+        <td>{{publisher.amountOfBooks}}</td>
+        <td>{{publisher.founderDate}}</td>
+        <td>
+            <a class="btn btn-success" href="/publishers/edit_publisher?publisherID={{publisher.publisherID}}">✏️</a>
+            <form action="/publishers/delete_publisher" method="post" style="display: inline;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="publisherID" id="publisherID" value="{{publisher.publisherID}}">
+                <button class="btn btn-danger" onclick="publisher_delete(this); return false;">🗑️</button>
+
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<div id="data-navigation">
+    <a href="{{ url_for('publishers_blueprint.publishers', page=1) }}"
+       class="btn btn-outline-primary btn-sm
+           {% if publishers.page == 1 %}disabled{% endif %}">
+        &laquo;&laquo;
+    </a>
+    <a href="{{ url_for('publishers_blueprint.publishers', page=publishers.prev_num) }}"
+       class="btn btn-outline-primary btn-sm
+           {% if publishers.page == 1 %}disabled{% endif %}">
+        &laquo;
+    </a>
+    <a class="btn btn-primary btn-sm">
+        {{ publishers.page }}
+    </a>
+
+    <a href="{{ url_for('publishers_blueprint.publishers', page=publishers.next_num) }}"
+       class="btn btn-outline-primary btn-sm
+           {% if publishers.page == publishers.pages or publishers.pages == 0 %}disabled{% endif %}">
+        &raquo;
+    </a>
+    <a href="{{ url_for('publishers_blueprint.publishers', page=publishers.pages) }}"
+       class="btn btn-outline-primary btn-sm
+           {% if publishers.page == publishers.pages or publishers.pages == 0%}disabled{% endif %}">
+        &raquo;&raquo;
+    </a>
+</div>
+
+
+
+{%endblock%}
